@@ -5,7 +5,8 @@ class Message < ApplicationRecord
   
   protected
   def generate_number
-    self.number =  Message.count == 0 ? 1 : Message.maximum("number")+1
+    chat_msg_count = Message.group(:chat_id).maximum("number")[self.chat_id]
+    self.number =  chat_msg_count == nil ? 1 : chat_msg_count + 1
   end
 
   protected
