@@ -4,6 +4,9 @@ class ChatsController < ApplicationController
   end
 
   def create
+    @app = Application.where(token:params[:application_token]).first
+    @chat = @app.chats.create(message_count: 0)
+    render json: {chat_number: @chat.number}
   end
 
   def update

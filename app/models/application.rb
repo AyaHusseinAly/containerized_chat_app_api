@@ -1,8 +1,8 @@
 class Application < ApplicationRecord
-    has_many :chats,dependent: :destroy
+    has_many :chats #, dependent: :destroy
+    validates :name, presence: true
 
     before_create :generate_token
-    validates :name, presence: true
   
     protected
     def generate_token
