@@ -1,6 +1,15 @@
 class ChatsController < ApplicationController
   def index
-    render json: Chat.select(:number, :message_count, :created_at, :updated_at).to_json(except: :id)
+    @token = params[:application_id]
+    @app = Application.find_by(token: @token)
+    @status = 200
+    if @app == nil
+      @response = {errors: "app with token #{@token} is not found"}
+      @status = 404
+    else
+      @response = @app.chats.select(:number, :message_count, :created_at, :updated_at).to_json(except: :id)
+    end
+    render json: @response
   end
 
   def create
