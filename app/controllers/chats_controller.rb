@@ -35,12 +35,12 @@ class ChatsController < ApplicationController
       @response = {errors: "app with token #{@token} is not found"}
       @status = 404
     else
-      @chat = @app.chats.select(:number, :message_count, :created_at, :updated_at).find_by(number: @chat_number)
+      @chat = @app.chats.find_by(number: @chat_number)
       if @chat == nil 
         @response = {errors: "chat with number #{@chat_number} is not found"}
         @status = 404
       else
-        @response = {chat: @chat}
+        @response = @chat.to_json(except: [:id,:application_id])
       end
       
     end

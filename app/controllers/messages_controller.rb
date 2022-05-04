@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
         @response = @chat.messages.select(:number, :body, :created_at, :updated_at).to_json(except: :id)
       end
     end
-    render json: @response
+    render json: @response, status: @status
   end
   
   def create
@@ -102,5 +102,6 @@ class MessagesController < ApplicationController
   end
 
   def search
+    render json: Message.search('hi')#.records
   end
 end

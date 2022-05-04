@@ -1,7 +1,10 @@
 class Message < ApplicationRecord
+  include Searchable
+  
   belongs_to :chat
   before_create :generate_number
   after_create :update_msg_count
+  validates :body, presence: true
   
   protected
   def generate_number

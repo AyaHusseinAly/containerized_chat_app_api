@@ -2,34 +2,46 @@ class ApplicationsController < ApplicationController
 
 
   def index
-    render json: Application.all()
+    render json: Application.select(:token, :name, :chat_count, :created_at, :updated_at).to_json(except: :id)
   end
 
   def create
-    @app = Application.create(name: params[:name], chat_count: 0)
-    response = params[:name].present? ? {token: @app.token} : {error:"missing application name"}
+    @app = Application.create(name: params[:name], chat_count: 0)  # validated in model name not null
+    response = params[:name].present? ? {token: @app.token} : {errors:"missing name"}
     render json: response
   end
 
 
   def update
-    token = params[:id]
-    @app = Application.find_by(token: token) 
-    if params[:name].present?
+    @token = params[:id]
+    @status = 200
+    @app = Application.find_by(token: @token) 
+    if @app == nil
+      @response = {errors: "app with token #{@token} is not found"}
+      @status = 404
+      
+    else
       @app.name = params[:name]
       @app.save()
-      response = {success: "updated successfully" , app: @app.attributes.slice('token', 'name', 'chat_count', 'created_at', 'updated_at')} 
-    else
-      response = {error:"missing application name"}
+      @response = @app.to_json(except: :id)      
     end
-    render json: response
+    render json: @response, status: @status
   end
 
 
   def show
-    token = params[:id]
-    @app = Application.find_by(token: token).attributes.slice('token', 'name', 'chat_count', 'created_at', 'updated_at')  
-    render json: {app: @app}
+    @token = params[:id]
+    @status = 200
+    @app = Application.find_by(token: @token) 
+    if @app == nil
+      @response = {errors: "app with token #{@token} is not found"}
+      @status = 404
+     
+    else
+      @response = @app.to_json(except: :id)
+      
+    end
+    render json: @response, status: @status
   end
 
 end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :messages, only: [:create, :index, :update, :show]
     end
   end
-  get 'items/search', to: 'items#search'
+  get 'messages/search', to: 'messages#search'
 
   # resources :chats, only: [:create, :index, :update, :show]
   # resources :messages, only: [:create, :index, :update, :show, :search]
