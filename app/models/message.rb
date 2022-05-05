@@ -1,6 +1,7 @@
+require 'elasticsearch/model'
+
 class Message < ApplicationRecord
-  include Searchable
-  
+  # include Searchable  
   belongs_to :chat
   before_create :generate_number
   after_create :update_msg_count
@@ -17,4 +18,35 @@ class Message < ApplicationRecord
     self.chat.message_count += 1
     self.chat.save()
   end
+
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
+  def self.search(query, chat_id)
+    __elasticsearch__.search({
+      "query": { 
+        "bool": { 
+          "must": [
+            { "match": { "body": query }}
+          ],
+          "filter": [ 
+            { "term":  { "chat_id": chat_id }},
+          ]
+        }
+      }
+  })
+end
+  # def self.search(query)
+  #   __elasticsearch__.search(
+  #     {
+  #       query: {
+  #         multi_match: {
+  #           query: query,
+  #           fuzziness: 1,
+  #           fields: ['body']
+  #         }
+  #       },
+  #     }
+  #   )
+  # end
 end

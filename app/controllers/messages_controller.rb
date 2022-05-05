@@ -102,6 +102,31 @@ class MessagesController < ApplicationController
   end
 
   def search
-    render json: Message.search('hi')#.records
+    get_chat()
+    if @status == 200
+      @response = Message.search(params[:q] , @chat.id).records.records
+    end
+    render json: @response, status: @status
   end
+
+  private
+  def get_chat
+    @token = params[:application_id]
+    @chat_number = params[:chat_id]
+    @msg_number = params[:id]
+
+    @app = Application.find_by(token: @token)
+    @status = 200
+    if @app == nil
+      @response = {errors: "app with token #{@token} is not found"}
+      @status = 404
+    else
+      @chat = @app.chats.find_by(number: @chat_number)
+      if @chat == nil 
+        @response = {errors: "chat with number #{@chat_number} is not found"}
+        @status = 404
+      end
+    end
+  end
+
 end

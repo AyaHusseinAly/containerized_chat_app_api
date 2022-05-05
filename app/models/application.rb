@@ -3,6 +3,7 @@ class Application < ApplicationRecord
     validates :name, presence: true
 
     before_create :generate_token
+    # before_save :generate_token
   
     protected
     def generate_token

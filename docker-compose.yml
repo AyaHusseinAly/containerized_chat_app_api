@@ -10,24 +10,17 @@ services:
             MYSQL_PASSWORD: password
         ports:
             - "3307:3306"
+
     elastic:
-        image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2-amd64
         environment:
-            TAKE_FILE_OWNERSHIP: "true"
-            network.host: "0.0.0.0"
-            http.port: "9200"
-            transport.host: localhost
-            transport.tcp.port: "9300"
-            xpack.ml.enabled: "false"
-        # volumes:
-        #   - ./.data/elastic:/usr/share/elasticsearch/data
+            - cluster.name=my-awesome-elasticsearch-cluster
+            - network.host=0.0.0.0
+            - bootstrap.memory_lock=true
+            - discovery.type=single-node
         ports:
             - "9200:9200"
             - "9300:9300"
-        # ulimits:
-        #     nofile:
-        #     soft: "65536"
-        #     hard: "65536"
 
     app: 
         build: .
