@@ -27,7 +27,7 @@ class Message < ApplicationRecord
       "query": { 
         "bool": { 
           "must": [
-            { "match": { "body": query }}
+            { "fuzzy": { "body": query}}
           ],
           "filter": [ 
             { "term":  { "chat_id": chat_id }},

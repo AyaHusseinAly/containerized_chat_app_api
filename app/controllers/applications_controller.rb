@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-
+  before_action :get_app, only: [:show, :update]
 
   def index
     render json: Application.select(:token, :name, :chat_count, :created_at, :updated_at).to_json(except: :id)
@@ -13,14 +13,7 @@ class ApplicationsController < ApplicationController
 
 
   def update
-    @token = params[:id]
-    @status = 200
-    @app = Application.find_by(token: @token) 
-    if @app == nil
-      @response = {errors: "app with token #{@token} is not found"}
-      @status = 404
-      
-    else
+    if @status == 200
       @app.name = params[:name]
       @app.save()
       @response = @app.to_json(except: :id)      
@@ -30,18 +23,21 @@ class ApplicationsController < ApplicationController
 
 
   def show
+    if @status == 200
+      @response = @app.to_json(except: :id)
+    end
+    render json: @response, status: @status
+  end
+
+  private
+  def get_app
     @token = params[:id]
     @status = 200
     @app = Application.find_by(token: @token) 
     if @app == nil
       @response = {errors: "app with token #{@token} is not found"}
       @status = 404
-     
-    else
-      @response = @app.to_json(except: :id)
-      
     end
-    render json: @response, status: @status
   end
 
 end
