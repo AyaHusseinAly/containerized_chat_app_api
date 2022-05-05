@@ -18,4 +18,4 @@ application up and running.
 |POST|/applications|{"name": "value"}|
 |GET|/applications/:token |-|
 |PUT|/applications/:token|{"name": "value"}|
-|GET|http://localhost:3001/applications/:application_token/chats//:chat_number/search/messages?q=:query|
+|GET|/applications/:application_token/chats//:chat_number/search/messages?q=:query|
