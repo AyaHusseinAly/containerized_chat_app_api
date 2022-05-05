@@ -7,10 +7,11 @@
 4. ``` $ docker-compose run app rails db:migrate ```
 
 
-* Access App:
-    > http:/localhost:3001
-* Access DB:
-    > connection: localhost:3307
+* App Access:
+    > http://localhost:3001
+* DB Access:
+    > localhost:3307
+    > Database: app
     > User: user
     > Password: password
 
