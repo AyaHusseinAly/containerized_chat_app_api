@@ -13,9 +13,9 @@ gem 'mysql2', '>= 0.3.18', '< 0.6.0'
 
 # Elastic Search
 gem 'elasticsearch-model'
-# gem 'faraday_middleware-aws-signers-v4'
-# gem 'elasticsearch-rails'
 
+# Redis
+gem 'redis'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

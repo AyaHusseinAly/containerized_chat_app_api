@@ -21,6 +21,11 @@ services:
         ports:
             - "9200:9200"
             - "9300:9300"
+    redis:
+        image: 'redis:5-alpine'
+        command: redis-server
+        ports:
+            - '6379:6379'
 
     app: 
         build: .
@@ -38,3 +43,4 @@ services:
             DB_NAME: app
             DB_PASSWORD: password
             DB_HOST: db
+

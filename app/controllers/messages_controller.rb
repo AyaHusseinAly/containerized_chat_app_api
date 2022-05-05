@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :get_chat
 
   def index
-    # @status == 200 after get_chat method checks that token and chat_number exists
+    # @status == 200 after before_action method checks that token and chat_number exists
     if @status == 200
       @response = @chat.messages.select(:number, :body, :created_at, :updated_at).to_json(except: :id)
     end
