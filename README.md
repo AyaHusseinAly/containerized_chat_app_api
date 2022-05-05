@@ -16,5 +16,6 @@ application up and running.
 |GET|/applications/:application_token/chats/:id|-|
 |GET|/applications|-|
 |POST|/applications|{"name": "value"}|
-|GET|/applications/:id |-|
-|PUT|/applications/:id|{"name": "value"}|
+|GET|/applications/:token |-|
+|PUT|/applications/:token|{"name": "value"}|
+|GET|http://localhost:3001/applications/:application_token/chats//:chat_number/search/messages?q=:query|
