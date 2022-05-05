@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
         @status = 404
       else
         @msg = @chat.messages.create(body: params[:msg_body])
-        @response = {message_number: @msg.number}
+        @response = @msg.errors.any? ? {errors: @msg.errors.full_messages} : {message_number: @msg.number}
       end
     end
     render json: @response, status: @status

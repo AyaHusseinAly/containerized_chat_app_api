@@ -6,8 +6,8 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @app = Application.create(name: params[:name], chat_count: 0)  # validated in model name not null
-    response = params[:name].present? ? {token: @app.token} : {errors:"missing name"}
+    @app = Application.create(name: params[:name], chat_count: 0)  
+    response = @app.errors.any? ? {errors: @app.errors.full_messages} : {token: @app.token}
     render json: response
   end
 
