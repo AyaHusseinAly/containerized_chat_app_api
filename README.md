@@ -2,10 +2,10 @@
 
 * Get this API up and running through this steps
 1. clone this repo
-2. docker-compose build
-3. docker-compose up
-4. open app terminal and run 
-    > rails db:migrate
+2. ``` $ docker-compose build ```
+3. ``` $ docker-compose up ```
+4. ``` $ docker-compose run app rails db:migrate ```
+
 
 * Access App:
     > http:/localhost:3001
