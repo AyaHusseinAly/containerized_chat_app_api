@@ -1,7 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Get this API up and running through this steps
+1- clone this repo
+2- docker-compose build
+3- docker-compose up
+4- open app terminal and run 
+    > rails db:migrate
+
+* Access App:
+    > http:/localhost:3001
+* Access DB:
+    > connection: localhost:3307
+    > User: user
+    > Password: password
 
 * Available End-points
 
