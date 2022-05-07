@@ -29,17 +29,5 @@ class Message < ApplicationRecord
       }
   })
 end
-  # def self.search(query)
-  #   __elasticsearch__.search(
-  #     {
-  #       query: {
-  #         multi_match: {
-  #           query: query,
-  #           fuzziness: 1,
-  #           fields: ['body']
-  #         }
-  #       },
-  #     }
-  #   )
-  # end
+
 end
