@@ -2,7 +2,7 @@ require 'elasticsearch/model'
 
 class Message < ApplicationRecord
   belongs_to :chat
-  after_create :update_msg_count, :update_redis_data
+  after_create :update_msg_count
   validates :body, presence: true
 
 
@@ -10,13 +10,6 @@ class Message < ApplicationRecord
   def update_msg_count
     self.chat.message_count += 1
     self.chat.save()
-  end
-
-  private
-  def update_redis_data
-    token = self.chat.application.token
-    chat_number = self.chat.number
-    REDIS.set(token+'__'+chat_number.to_s, self.number)
   end
 
   include Elasticsearch::Model

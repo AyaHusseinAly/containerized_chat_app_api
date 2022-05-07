@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
   get 'applications/:application_token/chats/:chat_number/search/messages', to: 'messages#search'
 
- 
+  mount ActionCable.server => "/cable"
+
 end

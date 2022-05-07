@@ -16,5 +16,6 @@ class Application < ApplicationRecord
     def update_redis_data
       REDIS.set(self.token,0)
     end
+    
   end
   

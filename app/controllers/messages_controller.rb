@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
     if @status == 200
       latest_msg_num = REDIS.get(@token+'__'+@chat_number).to_i
       @msg_number = latest_msg_num + 1
+      REDIS.set("#{@token}__#{@chat_number}", @msg_number) # increment chat latest_msg_num
       StoreMessagesJob.perform_later(@msg_body, @msg_number, @chat_number, @token)
       @response = {message_number: @msg_number}
     end
@@ -87,7 +88,7 @@ class MessagesController < ApplicationController
     if @msg_body == nil || @msg_body == ""
       @response = {errors: "msg_body can't be blank"}
       @status = 400
-    elsif REDIS.get(@token+'__'+@chat_number) == nil 
+    elsif REDIS.get("#{@token}__#{@chat_number}") == nil 
       @response = {errors: "chat with app token #{@token} & number #{@chat_number} is not found"}
       @status = 404
     end

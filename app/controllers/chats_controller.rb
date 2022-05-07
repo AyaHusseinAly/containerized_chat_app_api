@@ -15,7 +15,8 @@ class ChatsController < ApplicationController
   def create
     if @status == 200
       @chat_number = REDIS.get(@token).to_i + 1
-      REDIS.set(@token+'__'+@chat_number.to_s, 0)
+      REDIS.set(@token, @chat_number) # increment app latest_chat_num
+      REDIS.set("#{@token}__#{@chat_number}", 0)
       StoreChatsJob.perform_later(@chat_number, @token)
       @response = {chat_number: @chat_number}
     end
