@@ -3,7 +3,7 @@
 <img src="https://user-images.githubusercontent.com/71220483/167238852-78f6a958-0037-4d08-a1a1-52f488454529.svg" width="80"/> &nbsp;  <img src="https://user-images.githubusercontent.com/71220483/167238874-e12bf41b-7ce6-4c07-a822-26d443dc3164.svg" width="40"/> &nbsp; <img src="https://user-images.githubusercontent.com/71220483/167238876-989a9725-22fc-408b-8c24-da1db41c77b1.svg" width="30"/> &nbsp; <img src="https://user-images.githubusercontent.com/71220483/167239201-61d27b2c-5f40-4324-90f4-3d60febf6250.png" width="35"/>  &nbsp;   <img src="https://user-images.githubusercontent.com/71220483/167238879-df9eb29b-a6bf-4772-8b7b-83b8dff7fc22.svg" width="25"/> &nbsp;   
 
 
-### :paperclip:	Get this API up and running through this steps
+### :paperclip:	Get this API running through:
 1. clone this repo
 2. ``` $ docker-compose build ```
 3. ``` $ docker-compose up ```
