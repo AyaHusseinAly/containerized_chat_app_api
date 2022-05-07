@@ -24,25 +24,29 @@ after cloning this repo
 
 ## :pushpin:	 Create endpoints queuing system  
 in order to optimize time for serving chat and messages creation requests which is considered to be many and to be served concurrently.  
-1️⃣. a queuing system using <b>Redis</b> is used as temporary data store for generating the needed chat and message number for response without contacting the main database (MySQL)   
-2️⃣. <b>Active Jobs</b> is used to perform saving chats and messages from the temp data in redis later after serving the request and then update Applications and Chats coulmns chat_count and message_count is performed in the background
 
-### :paperclip: Available End-points
 
-| Method  | URL | Request Body 
+1️⃣ a queuing system using <b>Redis</b> is used as temporary data store for generating the needed chat and message number for response without contacting the main database (MySQL)   
+
+
+2️⃣ <b>Active Jobs</b> is used to perform saving chats and messages from the temp data in redis later after serving the request and then update Applications and Chats coulmns chat_count and message_count is performed in the background
+
+## :paperclip: Available End-points
+
+| Method  | URL | Request Body |
 | ------- | --- | --- |
-| GET  | /applications/:application_token/chats/:chat_number/messages|-|
-| POST | /applications/:application_token/chats/:chat_number/messages| {"msg_body": "value"}|
-|GET| /applications/:application_token/chats/:chat_number/messages/:id|-|
-|PUT| /applications/:application_token/chats/:chat_number/messages/:id|{"msg_body": "value"}|
-|GET|/applications/:application_token/chats|-|
-|POST| /applications/:application_token/chats|-|
-|GET|/applications/:application_token/chats/:id|-|
-|GET|/applications|-|
-|POST|/applications|{"name": "value"}|
-|GET|/applications/:token |-|
-|PUT|/applications/:token|{"name": "value"}|
-|GET|/applications/:application_token/chats/:chat_number/search/messages?q=:query|
+| `GET`  | /applications/:application_token/chats/:chat_number/messages| |
+| `POST` | /applications/:application_token/chats/:chat_number/messages| `{"msg_body": "value"}`|
+|`GET`| /applications/:application_token/chats/:chat_number/messages/:id||
+|`PUT`| /applications/:application_token/chats/:chat_number/messages/:id|`{"msg_body": "value"}`|
+|`GET`|/applications/:application_token/chats||
+|`POST`| /applications/:application_token/chats||
+|`GET`|/applications/:application_token/chats/:id||
+|`GET`|/applications||
+|`POST`|/applications|`{"name": "value"}`|
+|`GET`|/applications/:token ||
+|`PUT`|/applications/:token|`{"name": "value"}`|
+|`GET`|/applications/:application_token/chats/:chat_number/search/messages?q=:query|
 
 
 
