@@ -1,7 +1,7 @@
 class CreateMessages < ActiveRecord::Migration[5.0]
   def change
     create_table :messages do |t|
-      t.integer :number
+      t.integer :number, index: true, unique: true
       t.text :body
       t.references :chat, foreign_key: true
 

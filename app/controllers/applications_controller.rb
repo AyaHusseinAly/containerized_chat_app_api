@@ -31,7 +31,7 @@ class ApplicationsController < ApplicationController
 
   private
   def get_app
-    @token = params[:id]
+    @token = params[:token]
     @status = 200
     @app = Application.find_by(token: @token) 
     if @app == nil
