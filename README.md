@@ -23,6 +23,11 @@
 ### :memo:	API documentation  
 https://documenter.getpostman.com/view/12933230/UyxdKUR9
 
+### :100: Creation endpoints queuing system  
+in order to optimize time for serving chat and messages creation requests which is considered to be many and supposed to be served concurrently.
+1. a queuing system using <b>Redis</b> is used as temporary data store for generating the needed chat and message number for response without contacting the main database (MySQL)
+2. <b>Active Jobs</b> is used to perform saving chats and messages from the temp data in redis later after serving the request and then update Applications and Chats coulmns chat_count and message_count is performed in the background
+
 ##### :mag_right: Available End-points
 
 | Method  | URL | Request Body 
