@@ -12,7 +12,7 @@
 
 * Access API through:
     > http://localhost:3001  
-    import <i>app_chat_system_rails_5.postman_collection.json</i> file to postman desktop or check this [link](https://documenter.getpostman.com/view/12933230/UyxdKUR9) and click Run in Postman button
+    import <ins><i>app_chat_system_rails_5.postman_collection.json</i></ins> file from parent directory to postman desktop or check this [link](https://documenter.getpostman.com/view/12933230/UyxdKUR9) and click Run in Postman button
     
 * Access database through:
     > localhost:3307  
@@ -43,7 +43,7 @@ in order to optimize time for serving chat and messages creation requests which 
 |POST|/applications|{"name": "value"}|
 |GET|/applications/:token |-|
 |PUT|/applications/:token|{"name": "value"}|
-|GET|/applications/:application_token/chats//:chat_number/search/messages?q=:query|
+|GET|/applications/:application_token/chats/:chat_number/search/messages?q=:query|
 
 
 
