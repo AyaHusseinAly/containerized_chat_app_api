@@ -1,21 +1,26 @@
 # README
 
-* Get this API up and running through this steps
+### Get this API up and running through this steps
 1. clone this repo
 2. ``` $ docker-compose build ```
 3. ``` $ docker-compose up ```
 4. ``` $ docker-compose run app rails db:migrate ```
 
 
-* App Access:
-    > http://localhost:3001
-* DB Access:
-    > localhost:3307
-    > Database: app
-    > User: user
-    > Password: password
+* Access API through:
+    > http://localhost:3001  
+    import <b>app_chat_system_rails_5.postman_collection.json</b> file to postman desktop or check this [link](https://documenter.getpostman.com/view/12933230/UyxdKUR9) and click Run in Postman button
+    
+* Access database through:
+    > localhost:3307  
+    > Database: app  
+    > User: user  
+    > Password: password  
 
-* Available End-points
+### API documentation
+https://documenter.getpostman.com/view/12933230/UyxdKUR9
+
+##### Available End-points
 
 | Method  | URL | Request Body 
 | ------- | --- | --- |
