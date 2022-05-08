@@ -19,6 +19,7 @@ class ChatsController < ApplicationController
       REDIS.set("#{@token}__#{@chat_number}", 0)
       StoreChatsJob.perform_later(@chat_number, @token)
       @response = {chat_number: @chat_number}
+      @status = 201
     end
     render json: @response, status: @status
   end

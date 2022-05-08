@@ -18,6 +18,7 @@ class MessagesController < ApplicationController
       REDIS.set("#{@token}__#{@chat_number}", @msg_number) # increment chat latest_msg_num
       StoreMessagesJob.perform_later(@msg_body, @msg_number, @chat_number, @token)
       @response = {message_number: @msg_number}
+      @status = 201
     end
     render json: @response, status: @status
   end

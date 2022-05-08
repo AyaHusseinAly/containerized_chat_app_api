@@ -8,7 +8,7 @@ class ApplicationsController < ApplicationController
   def create
     @app = Application.create(name: params[:name], chat_count: 0)  
     response = @app.errors.any? ? {errors: @app.errors.full_messages} : {token: @app.token}
-    render json: response
+    render json: response, status: 201
   end
 
 
